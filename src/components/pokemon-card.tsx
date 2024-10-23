@@ -4,12 +4,12 @@ import React from "react";
 import Image from "next/image";
 
 function PokemonCard({
-  name = "Bulbasaur",
-  number = "#001",
+  name,
+  number,
   size = "medium",
 }: {
   name?: string;
-  number?: string;
+  number?: number;
   size?: "small" | "medium" | "large";
 }) {
   const dimensions = {
@@ -23,7 +23,7 @@ function PokemonCard({
   return (
     <div className={`pokemon-card ${size}`}>
       <Image
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/refs/heads/master/sprites/pokemon/other/home/1.png`}
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/refs/heads/master/sprites/pokemon/other/home/${number}.png`}
         alt={`Pokemon`}
         width={width}
         height={height}
@@ -39,7 +39,7 @@ function PokemonCard({
               : "text-3xl"
           }`}
         >
-          {name}
+          {(name ?? "").charAt(0).toUpperCase() + (name ?? "").slice(1)}
         </h2>
         <p
           className={
@@ -50,7 +50,7 @@ function PokemonCard({
               : "text-xl"
           }
         >
-          {number}
+          #{number}
         </p>
       </div>
     </div>
